@@ -219,6 +219,9 @@ public class RateThisApp {
             // Dialog is already present
             return;
         }
+        if (sCallback != null) {
+            sCallback.onShow();
+        }
 
         int titleId = sConfig.mTitleId != 0 ? sConfig.mTitleId : R.string.rta_dialog_title;
         int messageId = sConfig.mMessageId != 0 ? sConfig.mMessageId : R.string.rta_dialog_message;
@@ -504,5 +507,10 @@ public class RateThisApp {
          * "Later" event
          */
         void onCancelClicked();
+
+        /**
+         * "Dialog" has shown
+         */
+        void onShow();
     }
 }
