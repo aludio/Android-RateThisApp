@@ -303,6 +303,9 @@ public class RateThisApp {
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
+                if (sCallback != null) {
+                    sCallback.onDismiss();
+                }
                 sDialogRef.clear();
             }
         });
@@ -507,6 +510,11 @@ public class RateThisApp {
          * "Later" event
          */
         void onCancelClicked();
+
+        /**
+         * Dismiss dialog
+         */
+        void onDismiss();
 
         /**
          * "Dialog" has shown
