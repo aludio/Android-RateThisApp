@@ -209,7 +209,7 @@ public class RateThisApp {
      * Get count number of the rate dialog launches
      * @return
      */
-    public static int getLaunchCount(final Context context){
+    public static int getLaunchCount(final Context context) {
         SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         return pref.getInt(KEY_LAUNCH_TIMES, 0);
     }
@@ -318,6 +318,8 @@ public class RateThisApp {
      * @param context
      */
     private static void clearSharedPreferences(Context context) {
+        mInstallDate = new Date();
+        mLaunchTimes = 0;
         SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         Editor editor = pref.edit();
         editor.remove(KEY_INSTALL_DATE);
@@ -366,9 +368,11 @@ public class RateThisApp {
      * @param context
      */
     private static void storeAskLaterDate(final Context context) {
+        long dt = System.currentTimeMillis();
+        mAskLaterDate = new Date(dt);
         SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         Editor editor = pref.edit();
-        editor.putLong(KEY_ASK_LATER_DATE, System.currentTimeMillis());
+        editor.putLong(KEY_ASK_LATER_DATE, dt);
         editor.apply();
     }
 
